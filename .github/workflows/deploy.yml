@@ -26,7 +26,6 @@ jobs:
 
       - name: Export static app
         run: |
-          echo "output: export" >> next.config.js
           npm run build
 
       - name: Sync to S3

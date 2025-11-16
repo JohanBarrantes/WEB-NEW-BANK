@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // genera HTML estático en carpeta 'out'
+  reactStrictMode: true,
+  output: 'export',  // esto habilita la exportación estática
 }
 
 module.exports = nextConfig

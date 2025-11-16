@@ -30,16 +30,16 @@ jobs:
 
       - name: Sync to S3
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.GITHUB_ACTIONS_AWS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.GITHUB_ACTIONS_AWS_SECRET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
         run: |
           aws s3 sync out/ s3://newbank-frontend-dev --delete
 
       - name: Invalidate CloudFront
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.GITHUB_ACTIONS_AWS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.GITHUB_ACTIONS_AWS_SECRET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
         run: |
           aws cloudfront create-invalidation --distribution-id ETG5R4FNBOV3B --paths "/*"

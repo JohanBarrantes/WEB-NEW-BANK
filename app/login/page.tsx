@@ -6,12 +6,12 @@ import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   const router = useRouter();
   const {
-    username,
+    email,
     password,
     loading,
     error,
     userNotFound,
-    setUsername,
+    setUserMail,
     setPassword,
     handleSubmit,
   } = useLoginForm();
@@ -44,8 +44,8 @@ export default function LoginPage() {
           <input
             type="text"
             placeholder="Email"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={email}
+            onChange={e => setUserMail(e.target.value)}
             required
             className="
               w-full px-4 py-2 rounded-lg border 

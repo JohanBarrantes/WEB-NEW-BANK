@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
-import { loginUserMock } from '../service/mockAuthService';
+import {loginUserMock } from '../service/mockAuthService';
 import { useAuth } from "../context/AuthContext"; // <-- ESTO ERA LO QUE FALTABA
 
 export const useLoginForm = () => {
   const setAuth = useAuthStore(state => state.setAuth);
     const { login } = useAuth();
 
-  const [username, setUsername] = useState('');
+  const [email, setUserMail] = useState('');
   const [password, setPassword] = useState('');
 
   const [loading, setLoading] = useState(false);
@@ -22,9 +23,9 @@ export const useLoginForm = () => {
     setError(null);
 
     try {
-      const result = await loginUserMock({ username, password });
+      const result = await loginUserMock({ email, password });
       setAuth(result.data.user, result.data.token);
-       await login(username, password);
+       await login(email, password);
     } catch (err: any) {
       if (err.message === "USER_NOT_FOUND") {
         setUserNotFound(true);
@@ -37,12 +38,12 @@ export const useLoginForm = () => {
   };
 
   return {
-    username,
+    email,
     password,
     loading,
     error,
     userNotFound,
-    setUsername,
+    setUserMail,
     setPassword,
     handleSubmit,
   };

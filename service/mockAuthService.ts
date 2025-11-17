@@ -9,13 +9,18 @@ export interface RegisterPayload {
   email: string;
   password: string;
 }
+export interface LoginResponse {
+  data: {
+    user: string;
+    token: string;
+  };
+}
 
 const mockUsers: any[] = [
   { email: "admin", password: "admin", userId: "1234" }
 ];
 
-export const loginUserMock = async (payload: LoginPayload) => {
-  console.log(payload)
+export const loginUserMock = async (payload: LoginPayload): Promise<LoginResponse> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const u = mockUsers.find(
@@ -62,14 +67,14 @@ export const registerUserMock = async (payload: RegisterPayload) => {
 };
 
 // service/mockProductsService.ts
-export async function createProductMock(product) {
+export async function createProductMock(product: string) {
   return new Promise((resolve) => {
     setTimeout(() => resolve({ success: true, product }), 800);
   });
 }
 
 // service/mockMovementsService.ts
-export async function registerMovementMock(movement) {
+export async function registerMovementMock(movement:string) {
   return new Promise((resolve) => {
     setTimeout(() => resolve({ success: true, movement }), 500);
   });

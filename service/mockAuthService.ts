@@ -1,3 +1,5 @@
+import { Product } from "@/types/Product";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface LoginPayload {
   email: string;
@@ -15,12 +17,6 @@ export interface LoginResponse {
     user: string;
     token: string;
   };
-}
-export interface Product {
-  type: string;
-  amount: number;
-  createdAt: string;
-  transactions: any[];
 }
 
 

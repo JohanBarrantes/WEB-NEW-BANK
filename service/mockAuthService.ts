@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface LoginPayload {
   email: string;
   password: string;
@@ -15,6 +16,13 @@ export interface LoginResponse {
     token: string;
   };
 }
+export interface Product {
+  type: string;
+  amount: number;
+  createdAt: string;
+  transactions: any[];
+}
+
 
 const mockUsers: any[] = [
   { email: "admin", password: "admin", userId: "1234" }
@@ -67,7 +75,7 @@ export const registerUserMock = async (payload: RegisterPayload) => {
 };
 
 // service/mockProductsService.ts
-export async function createProductMock(product: string) {
+export async function createProductMock(product: Product) {
   return new Promise((resolve) => {
     setTimeout(() => resolve({ success: true, product }), 800);
   });

@@ -1,45 +1,104 @@
 'use client';
-import { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
+
+import { useLoginForm } from '../../hooks/useLogin';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  const { login } = useAuth();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await login(username, password);
-  };
+  const router = useRouter();
+  const {
+    username,
+    password,
+    loading,
+    error,
+    userNotFound,
+    setUsername,
+    setPassword,
+    handleSubmit,
+  } = useLoginForm();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded shadow-md">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+    <div className="flex min-h-screen items-center justify-center bg-gray-900">
+      <div className="w-full max-w-md bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-700">
+
+        <h1 className="text-2xl font-bold mb-6 text-center text-white">
+          Hola !
+        </h1>
+
+        {error && <p className="text-red-400 text-center mb-4">{error}</p>}
+
+        {userNotFound && (
+          <div className="text-center mb-4">
+            <p className="text-red-400 mb-2">Usuario no encontrado</p>
+            <button
+              className="text-blue-400 underline hover:text-blue-300"
+              onClick={() => router.push('/register')}
+            >
+              Crear una cuenta
+            </button>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
+
+          {/* Email */}
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Email"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="
+              w-full px-4 py-2 rounded-lg border 
+              bg-gray-700 text-white 
+              placeholder-gray-400 
+              border-gray-600 
+              focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+              transition
+            "
           />
+
+          {/* Password */}
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="
+              w-full px-4 py-2 rounded-lg border 
+              bg-gray-700 text-white 
+              placeholder-gray-400 
+              border-gray-600 
+              focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+              transition
+            "
           />
+
+          {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+            disabled={loading}
+            className="
+              w-full bg-blue-600 text-white py-2 rounded-lg font-semibold
+              hover:bg-blue-700 transition
+              disabled:bg-blue-900 disabled:cursor-not-allowed
+            "
           >
-            Login
+            {loading ? 'Loading...' : 'Login'}
           </button>
         </form>
+
+        {/* Register CTA */}
+        <p className="text-center text-gray-300 mt-4">
+          No tienes una cuenta?{' '}
+          <span
+            className="text-blue-400 hover:underline cursor-pointer"
+            onClick={() => router.push('/register')}
+          >
+            Crear cuenta
+          </span>
+        </p>
+
       </div>
     </div>
   );

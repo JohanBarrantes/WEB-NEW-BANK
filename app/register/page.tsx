@@ -55,7 +55,7 @@ export default function RegisterPage() {
             type="text"
             placeholder="Nombre completo"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
             required
             className="
               w-full px-4 py-2 rounded-lg border 
@@ -72,7 +72,7 @@ export default function RegisterPage() {
             type="tel"
             placeholder="Número de telefono"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
             required
             className="
               w-full px-4 py-2 rounded-lg border 

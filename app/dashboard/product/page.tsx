@@ -71,7 +71,7 @@ export default function ProductDetailPage() {
             placeholder="Amount"
             type="number"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)}
           />
 
           <Button>Add Transaction</Button>

@@ -43,7 +43,7 @@ export default function CreateProductPage() {
               focus:ring-2 focus:ring-blue-500
             "
             value={type}
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e:React.ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}
           >
             <option value="savings">Cuenta de ahorros</option>
             <option value="credit">Tarjeta de crédito</option>

@@ -1,7 +1,6 @@
-// app/dashboard/create-product/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import Input from '@/components/UI/Input';
 import { useProductStore } from '@/store/productStore';
 import { createProductMock } from '@/service/mockAuthService';
@@ -15,12 +14,12 @@ export default function CreateProductPage() {
   const [type, setType] = useState('savings');
   const [amount, setAmount] = useState('');
 
-  const submit = async (e) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const product = {
-      type: type === 'savings' ? 'Cuenta de ahorros' : 'Tarjeta de credito',
-      amount,
+      type: type === 'savings' ? 'Cuenta de ahorros' : 'Tarjeta de crédito',
+      amount: Number(amount),
       createdAt: new Date().toLocaleDateString(),
     };
 
@@ -34,7 +33,7 @@ export default function CreateProductPage() {
     <div className="min-h-screen bg-gray-900 text-white p-8 flex justify-center">
       <div className="bg-gray-800 p-8 rounded-xl border border-gray-700 w-full max-w-md">
 
-        <h1 className="text-2xl font-bold mb-6 text-center">Crea tu producto !</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center">Crea tu producto</h1>
 
         <form className="space-y-4" onSubmit={submit}>
           <select
@@ -47,7 +46,7 @@ export default function CreateProductPage() {
             onChange={(e) => setType(e.target.value)}
           >
             <option value="savings">Cuenta de ahorros</option>
-            <option value="credit">Tarjeta de credito</option>
+            <option value="credit">Tarjeta de crédito</option>
           </select>
 
           <Input

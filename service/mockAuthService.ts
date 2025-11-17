@@ -21,7 +21,7 @@ export interface LoginResponse {
 
 
 const mockUsers: any[] = [
-  { email: "admin", password: "admin", userId: "1234" }
+  { username: "admin", password: "admin", userId: "1234" }
 ];
 
 export const loginUserMock = async (payload: LoginPayload): Promise<LoginResponse> => {

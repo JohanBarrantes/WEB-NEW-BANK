@@ -61,7 +61,7 @@ export default function ProductDetailPage() {
               focus:ring-2 focus:ring-blue-500
             "
             value={type}
-            onChange={(e) => setType(e.target.value as 'income' | 'expense')}
+            onChange={(e:React.ChangeEvent<HTMLSelectElement>) => setType(e.target.value as 'income' | 'expense')}
           >
             <option value="income">Income</option>
             <option value="expense">Expense</option>

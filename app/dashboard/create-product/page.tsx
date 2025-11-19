@@ -84,7 +84,7 @@ const customerId =localStorage.getItem('userId')?? '';
           <p className="text-gray-400 text-sm mt-2">
             {products.find(p => p.productName === type)?.description}
           </p>
-          <Input placeholder="Valor inicial" type="number" value={amount} onChange={e => setAmount(e.target.value)} />
+          <Input placeholder="Valor inicial" type="number" value={amount} onChange={(e:React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)} />
 
           <Button type="submit">Crear</Button>
         </form>

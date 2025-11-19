@@ -32,7 +32,6 @@ export const loginUserMock = async (payload: LoginPayload): Promise<LoginRespons
           user.username === payload.email &&
           user.password === payload.password
       );
-console.log(u)
       if (!u) {
         return reject({
           message: "USER_NOT_FOUND"

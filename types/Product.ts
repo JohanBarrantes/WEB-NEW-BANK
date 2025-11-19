@@ -1,4 +1,6 @@
 export interface Product {
+    id: string; 
+  customerId:string;
   type: string;
   amount: number;
   createdAt: string;

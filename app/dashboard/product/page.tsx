@@ -43,13 +43,13 @@ export default function ProductDetailPage() {
     <div className="min-h-screen bg-gray-900 text-white p-8 flex justify-center">
       <div className="bg-gray-800 p-8 rounded-xl border border-gray-700 w-full max-w-2xl">
 
-        <h1 className="text-3xl font-bold text-center mb-6">Product Details</h1>
+        <h1 className="text-3xl font-bold text-center mb-6">Detalle del producto</h1>
 
         {/* PRODUCT INFO */}
         <div className="mb-8 space-y-2">
-          <p><strong>Type:</strong> {product.type}</p>
-          <p><strong>Created:</strong> {product.createdAt}</p>
-          <p><strong>Balance:</strong> ${product.amount}</p>
+          <p><strong>Tipo:</strong> {product.type}</p>
+          <p><strong>Creado</strong> {product.createdAt}</p>
+          <p><strong>Cantidad</strong> ${product.amount}</p>
         </div>
 
         {/* ADD TRANSACTION */}

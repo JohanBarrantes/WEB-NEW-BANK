@@ -1,14 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useState, useEffect } from 'react';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import { useRouter } from 'next/navigation';
-
-import { useProductStore } from '@/store/productStore';
-import { createProductMock } from '@/service/mockAuthService';
 import { Product } from '@/types/Product';
-import { getListProduct } from '@/service/authService';
+import { createProduct, getListProduct } from '@/service/authService';
+import { v4 as uuid } from "uuid";
 
 const productLabels: Record<string, string> = {
   creditCard: 'Tarjeta de crédito',
@@ -17,7 +16,6 @@ const productLabels: Record<string, string> = {
 
 export default function CreateProductPage() {
   const router = useRouter();
-  const { createProduct } = useProductStore();
 
   const [products, setProducts] = useState<any[]>([]);
   const [type, setType] = useState<string | null>(null);
@@ -27,7 +25,6 @@ export default function CreateProductPage() {
     async function load() {
       try {
         const res = await getListProduct();
-        console.log(res);
         const items = res?.data?.listProduct ?? [];
         setProducts(items);
 
@@ -46,17 +43,18 @@ export default function CreateProductPage() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!type) return; // todavía no cargaba
-
+    if (!type) return;
+const customerId =localStorage.getItem('userId')?? '';
     const product: Product = {
+      id: uuid(),
+      customerId,
       type,
       amount: Number(amount),
       createdAt: new Date().toLocaleDateString(),
       transactions: []
     };
 
-    await createProductMock(product);
-    createProduct(product);
+    await createProduct(product);
 
     router.push('/dashboard');
   };

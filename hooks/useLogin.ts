@@ -25,6 +25,7 @@ export const useLoginForm = () => {
     try {
       const result = await loginUser({ email, password });
       setAuth(result.data.user, result.data.token);
+      localStorage.setItem('userId', result.data.user);
        await login(email, password);
     } catch (err: any) {
       if (err.message === "USER_NOT_FOUND") {

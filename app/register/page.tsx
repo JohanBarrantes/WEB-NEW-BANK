@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { registerUserMock } from '../../service/mockAuthService';
 import { useRouter } from 'next/navigation';
+import { registerUser } from '@/service/authService';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function RegisterPage() {
     setError(null);
 
     try {
-      await registerUserMock({ name, phone, email, password });
+      await registerUser({ name, phone, email, password });
       setSuccess(true);
       setTimeout(() => router.push('/login'), 1000);
     } catch (err: any) {

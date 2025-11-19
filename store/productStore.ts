@@ -37,7 +37,7 @@ export const useProductStore = create<ProductStore>((set) => ({
       products: [
         ...state.products,
         {
-          id: crypto.randomUUID(), // autogenerado
+          id: crypto.randomUUID(),
           transactions: [],
           ...product,
         },

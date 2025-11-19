@@ -2,8 +2,8 @@
 'use client';
 import { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
-import {loginUserMock } from '../service/mockAuthService';
 import { useAuth } from "../context/AuthContext"; // <-- ESTO ERA LO QUE FALTABA
+import { loginUser } from '@/service/authService';
 
 export const useLoginForm = () => {
   const setAuth = useAuthStore(state => state.setAuth);
@@ -23,7 +23,7 @@ export const useLoginForm = () => {
     setError(null);
 
     try {
-      const result = await loginUserMock({ email, password });
+      const result = await loginUser({ email, password });
       setAuth(result.data.user, result.data.token);
        await login(email, password);
     } catch (err: any) {
